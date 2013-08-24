@@ -30,6 +30,7 @@ public class Player {
 		orientation = RIGHT;
 	}
 	
+	//Draws the player to the screen
 	public void draw(SpriteBatch batch) {
 		if (orientation == UP) {spriteUp.draw(batch);}
 		if (orientation == DOWN) {spriteDown.draw(batch);}
@@ -38,6 +39,7 @@ public class Player {
 		weapon.draw(batch);
 	}
 	
+	//Updates player position and attributes
 	public void tick(Input input) {
 		//Set position and orientation
 		if (input.buttons[Input.UP]) {

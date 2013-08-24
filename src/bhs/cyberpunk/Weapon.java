@@ -30,13 +30,18 @@ public class Weapon {
 		fireButtonPressed = false;
 	}
 	
+	//Draw the reticle track and reticle to the screen
 	public void draw(SpriteBatch batch) {
 		if (!weaponDrawn) {return;}
 		track.draw(batch);
 		reticle.draw(batch);
 	}
 	
+	//Update weapon related attributes
 	public void tick(Input input) {
+		//TODO this code to do something when a button is RELEASED seems to get reused
+		//a lot. Maybe it would be better to enhance the Input class to handle this?
+		
 		//Draw or holster the weapon from user input
 		if (input.buttons[Input.WEAPON]) {
 			weaponButtonPressed = true;

@@ -75,7 +75,7 @@ public class Input implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		this.mouseX = screenX;
-		this.mouseY = Main.HEIGHT - screenY;
+		this.mouseY = Main.HEIGHT - screenY;  //To put y=0 along the bottom of the frame
 		return false;
 	}
 

@@ -8,9 +8,8 @@ public class Cyberpunk implements ApplicationListener {
 	private Input input;
 	private Screen screen;
 
-	@Override
+	//Runs only once, at the beginning of the game
 	public void create() {
-		// TODO Auto-generated method stub
 		Art.load();
 		Audio.load();
 		input = new Input();
@@ -19,12 +18,12 @@ public class Cyberpunk implements ApplicationListener {
 		Gdx.input.setInputProcessor(input);
 	}
 
-	@Override
+	//Continuously looped over, and is the highest level of abstraction for everything else
 	public void render() {
-		// TODO Auto-generated method stub
+		//Set the clear color of the background, and clear the screen
 		Gdx.gl.glClearColor(0.80f, 0.52f, 0.25f, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		
+
 		screen.tick(input);
 		screen.draw();
 	}
