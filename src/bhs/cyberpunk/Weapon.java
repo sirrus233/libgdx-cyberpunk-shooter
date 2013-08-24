@@ -13,6 +13,7 @@ public class Weapon {
 	private float trackDiameter;
 	private boolean weaponDrawn;
 	private boolean weaponButtonPressed;
+	private boolean fireButtonPressed;
 	
 	
 	public Weapon(Sprite p) {
@@ -26,6 +27,7 @@ public class Weapon {
 		
 		weaponDrawn = false;
 		weaponButtonPressed = false;
+		fireButtonPressed = false;
 	}
 	
 	public void draw(SpriteBatch batch) {
@@ -44,6 +46,14 @@ public class Weapon {
 		}
 		
 		if (!weaponDrawn) {return;}
+		
+		//On a mouse click, fire the gun
+		if (input.mouseLeft) {
+			fireButtonPressed = true;
+		} else if (fireButtonPressed) {
+			Audio.sounds[Audio.GUNSHOT].play();
+			fireButtonPressed = false;
+		}
 		
 		//Update targeting graphic position
 		updateTrack(input);

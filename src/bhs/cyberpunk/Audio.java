@@ -9,6 +9,6 @@ public class Audio {
 	public static Sound[] sounds = new Sound[64];
 	
 	public static void load() {
-		//sounds[GUNSHOT] = Gdx.audio.newSound(Gdx.files.internal("filename"));
+		sounds[GUNSHOT] = Gdx.audio.newSound(Gdx.files.internal("sound\\gunshot.wav"));
 	}
 }

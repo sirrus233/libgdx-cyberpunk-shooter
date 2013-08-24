@@ -13,8 +13,10 @@ public class Input implements InputProcessor {
 	public static final int FAST = 6;
 	
 	public boolean[] buttons = new boolean[64];
+	
 	public float mouseX = 0;
 	public float mouseY = 0;
+	public boolean mouseLeft = false;
 	
 	public void set(int key, boolean down) {
 		int button = -1;
@@ -36,14 +38,12 @@ public class Input implements InputProcessor {
 	
 	@Override
 	public boolean keyDown(int keycode) {
-		// TODO Auto-generated method stub
 		set(keycode, true);
 		return false;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
-		// TODO Auto-generated method stub
 		set(keycode, false);
 		return false;
 	}
@@ -56,13 +56,13 @@ public class Input implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
+		mouseLeft = true;
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
+		mouseLeft = false;
 		return false;
 	}
 
@@ -74,7 +74,6 @@ public class Input implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
 		this.mouseX = screenX;
 		this.mouseY = Main.HEIGHT - screenY;
 		return false;
