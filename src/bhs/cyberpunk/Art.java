@@ -7,7 +7,7 @@ public class Art {
 	public static final int PLAYER_LEFT = 1;
 	public static final int PLAYER_RIGHT = 2;
 	public static final int TARGET_TRACK = 3;
-	public static final int TARGET_RETICLE = 4;
+	public static final int TARGET_RETICLE = 5;
 	
 	public static Texture[] textures = new Texture[64];
 	
