@@ -14,6 +14,8 @@ public class Input implements InputProcessor {
 	
 	public boolean[] buttons = new boolean[64];
 	
+	public float oldMouseX = 0;
+	public float oldMouseY = 0;
 	public float mouseX = 0;
 	public float mouseY = 0;
 	public boolean mouseLeft = false;
@@ -74,6 +76,8 @@ public class Input implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
+		this.oldMouseX = mouseX;
+		this.oldMouseY = mouseY;
 		this.mouseX = screenX;
 		this.mouseY = Main.HEIGHT - screenY;  //To put y=0 along the bottom of the frame
 		return false;

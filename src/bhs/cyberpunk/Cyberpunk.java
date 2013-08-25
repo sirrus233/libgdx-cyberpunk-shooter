@@ -16,6 +16,7 @@ public class Cyberpunk implements ApplicationListener {
 		screen = new Screen();
 		
 		Gdx.input.setInputProcessor(input);
+		Gdx.input.setCursorCatched(true);
 	}
 
 	//Continuously looped over, and is the highest level of abstraction for everything else
