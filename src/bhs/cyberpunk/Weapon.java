@@ -86,8 +86,8 @@ public class Weapon {
 		float mouseXDelta = input.mouseX - input.oldMouseX;
 		float mouseYDelta = input.mouseY - input.oldMouseY;
 		
-		weaponMouseX += mouseXDelta;
-		weaponMouseY += mouseYDelta;
+		weaponMouseX += 2.0*mouseXDelta;
+		weaponMouseY += 2.0*mouseYDelta;
 		
 		float tanTheta = (weaponMouseY - trackCircle.y)/(weaponMouseX - trackCircle.x);
 		float theta = (float) Math.atan(tanTheta);
