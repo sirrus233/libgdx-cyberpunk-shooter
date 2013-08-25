@@ -11,8 +11,6 @@ public class Weapon {
 	private Circle trackCircle;
 	private float reticleDiameter;
 	private float trackDiameter;
-	private float weaponMouseX;
-	private float weaponMouseY;
 	private boolean weaponDrawn;
 	private boolean weaponButtonPressed;
 	private boolean fireButtonPressed;
@@ -26,9 +24,6 @@ public class Weapon {
 		
 		reticleDiameter = 40;
 		trackDiameter = 175;
-		
-		weaponMouseX = 0;
-		weaponMouseY = 0;
 		
 		weaponDrawn = false;
 		weaponButtonPressed = false;
@@ -83,15 +78,10 @@ public class Weapon {
 	}
 	
 	private void updateReticle(Input input) {
-		float mouseXDelta = input.mouseX - input.oldMouseX;
-		float mouseYDelta = input.mouseY - input.oldMouseY;
-		
-		weaponMouseX += mouseXDelta;
-		weaponMouseY += mouseYDelta;
-		
-		float tanTheta = (weaponMouseY - trackCircle.y)/(weaponMouseX - trackCircle.x);
+		float tanTheta = (input.mouseY - input.oldMouseY)/(input.mouseX - input.oldMouseX);
 		float theta = (float) Math.atan(tanTheta);
-		if (weaponMouseX < trackCircle.x) {
+		
+		if (input.mouseX < input.oldMouseX) {
 			theta = (float) (theta + Math.PI);
 		}
 		
