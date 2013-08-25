@@ -1,5 +1,6 @@
 package bhs.cyberpunk;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 
@@ -13,11 +14,9 @@ public class Input implements InputProcessor {
 	public static final int FAST = 6;
 	
 	public boolean[] buttons = new boolean[64];
-	
-	public float oldMouseX = 0;
-	public float oldMouseY = 0;
-	public float mouseX = 0;
-	public float mouseY = 0;
+
+	public int mouseX = 0;
+	public int mouseY = 0;
 	public boolean mouseLeft = false;
 	
 	public void set(int key, boolean down) {
@@ -76,10 +75,14 @@ public class Input implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		this.oldMouseX = mouseX;
-		this.oldMouseY = mouseY;
-		this.mouseX = screenX;
-		this.mouseY = Main.HEIGHT - screenY;  //To put y=0 along the bottom of the frame
+		mouseX = screenX;
+		mouseY = Main.HEIGHT - screenY;  //To put y=0 along the bottom of the frame
+		
+		if (mouseX < 0) {Gdx.input.setCursorPosition(0, mouseY);}
+		if (mouseX > Main.WIDTH) {Gdx.input.setCursorPosition(Main.WIDTH, mouseY);}
+		if (mouseY < 0) {Gdx.input.setCursorPosition(mouseX, 0);}
+		if (mouseY > Main.HEIGHT) {Gdx.input.setCursorPosition(mouseX, Main.HEIGHT);}
+		
 		return false;
 	}
 
