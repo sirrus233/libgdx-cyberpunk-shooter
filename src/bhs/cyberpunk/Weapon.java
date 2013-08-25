@@ -1,6 +1,5 @@
 package bhs.cyberpunk;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
@@ -11,7 +10,7 @@ public class Weapon {
 	private Sprite reticle;
 	private Circle trackCircle;
 	private float reticleDiameter;
-	private float trackDiameter;	
+	private float trackDiameter;
 	private boolean weaponDrawn;
 	private boolean weaponButtonPressed;
 	private boolean fireButtonPressed;
@@ -78,27 +77,16 @@ public class Weapon {
 		trackCircle.set(circleCenterX, circleCenterY, trackDiameter/2);
 	}
 	
-	private void updateReticle(Input input) {		
-		float tanTheta = (input.mouseY - trackCircle.y)/(input.mouseX - trackCircle.x);
+	private void updateReticle(Input input) {
+		float tanTheta = (input.mouseY - input.oldMouseY)/(input.mouseX - input.oldMouseX);
 		float theta = (float) Math.atan(tanTheta);
-		if (input.mouseX < trackCircle.x) {
+		
+		if (input.mouseX < input.oldMouseX) {
 			theta = (float) (theta + Math.PI);
 		}
 		
-		System.out.println(input.mouseX);
-		System.out.println(input.mouseY);
-		
-		int mouseX = (int) (trackCircle.radius*Math.cos(theta));
-		int mouseY = (int) (trackCircle.radius*Math.sin(theta));
-		
-		if (Math.hypot(mouseX, mouseY) > trackCircle.radius) {
-			Gdx.input.setCursorPosition( mouseX, mouseY);
-		}
-		
-		//float reticleXOffset = (float) (trackCircle.radius*Math.cos(theta) + reticleDiameter/4);
-		//float reticleYOffset = (float) (trackCircle.radius*Math.sin(theta) + reticleDiameter/4);
-		float reticleXOffset = (float) (mouseX + reticleDiameter/4);
-		float reticleYOffset = (float) (mouseY + reticleDiameter/4);
+		float reticleXOffset = (float) (trackCircle.radius*Math.cos(theta) + reticleDiameter/4);
+		float reticleYOffset = (float) (trackCircle.radius*Math.sin(theta) + reticleDiameter/4);
 		float reticleX = player.getX() + reticleXOffset;
 		float reticleY = player.getY() + reticleYOffset;
 		reticle.setBounds(reticleX, reticleY, reticleDiameter, reticleDiameter);
