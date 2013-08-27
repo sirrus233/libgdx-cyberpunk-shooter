@@ -14,6 +14,9 @@ public class Screen {
 	public Screen() {
 		//Sets the camera to view the entire screen
 		camera.setToOrtho(false, Main.WIDTH, Main.HEIGHT);
+		Audio.music[Audio.THEME].play();
+		Audio.music[Audio.THEME].setLooping(true);
+		Audio.music[Audio.THEME].setVolume(0.1f);;
 	}
 	
 	//Uses a SpriteBatch to draw to the screen

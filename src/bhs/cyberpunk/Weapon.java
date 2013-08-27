@@ -58,7 +58,7 @@ public class Weapon {
 		if (input.mouseLeft) {
 			fireButtonPressed = true;
 		} else if (fireButtonPressed) {
-			Audio.sounds[Audio.GUNSHOT].play();
+			Audio.effects[Audio.GUNSHOT].play();
 			fireButtonPressed = false;
 		}
 		

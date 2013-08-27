@@ -11,7 +11,8 @@ public class Cyberpunk implements ApplicationListener {
 	//Runs only once, at the beginning of the game
 	public void create() {
 		Art.load();
-		Audio.load();
+		Audio.loadEffects();
+		Audio.loadMusic();
 		input = new Input();
 		screen = new Screen();
 		
