@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Player {
-	private static final int UP = 0;
-	private static final int DOWN = 1;
-	private static final int RIGHT = 2;
-	private static final int LEFT = 3;
+	public static final int UP = 0;
+	public static final int DOWN = 1;
+	public static final int RIGHT = 2;
+	public static final int LEFT = 3;
 	
 	private Sprite sprite;
 	private Sprite spriteUp;
@@ -81,6 +81,10 @@ public class Player {
 		if (input.buttons[Input.FAST]) {
 			changeSpeed(5);
 		}
+	}
+	
+	public void setOrientation(int o) {
+		if ((o >= 0) && (o <= 3)) {orientation = o;}
 	}
 	
 	public int getSpeed() {
