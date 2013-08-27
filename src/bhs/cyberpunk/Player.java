@@ -36,12 +36,12 @@ public class Player {
 		if (orientation == DOWN) {spriteDown.draw(batch);}
 		if (orientation == LEFT) {spriteLeft.draw(batch);}
 		if (orientation == RIGHT) {spriteRight.draw(batch);}
-		weapon.draw(batch);
+		if (weapon.weaponDrawn()) {weapon.draw(batch);}
 	}
 	
 	//Updates player position and attributes
 	public void tick(Input input) {
-		//Set position and orientation
+		//Set position and orientation when weapon is not drawn (from keyboard)
 		if (input.buttons[Input.UP]) {
 			sprite.translateY(speed * Gdx.graphics.getDeltaTime());
 			orientation = UP;
@@ -57,6 +57,15 @@ public class Player {
 		if (input.buttons[Input.RIGHT]) {
 			sprite.translateX(speed * Gdx.graphics.getDeltaTime());
 			orientation = RIGHT;
+		}
+		
+		//If the weapon is drawn, orientation from keyboard is overwritten with orientation from mouse
+		if (weapon.weaponDrawn()) {
+			if (weapon.getTheta() < -Math.PI/4) {orientation = DOWN;}
+			else if (weapon.getTheta() < Math.PI/4) {orientation = RIGHT;}
+			else if (weapon.getTheta() < 3*Math.PI/4) {orientation = UP;}
+			else if (weapon.getTheta() < 5*Math.PI/4) {orientation = LEFT;}
+			else {orientation = DOWN;}
 		}
 		
 		//Prevent player from escaping off edge of screen

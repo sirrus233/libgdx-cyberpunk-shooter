@@ -11,6 +11,7 @@ public class Weapon {
 	private Circle trackCircle;
 	private float reticleDiameter;
 	private float trackDiameter;
+	private float theta;
 	private boolean weaponDrawn;
 	private boolean weaponButtonPressed;
 	private boolean fireButtonPressed;
@@ -25,6 +26,8 @@ public class Weapon {
 		reticleDiameter = 40;
 		trackDiameter = 175;
 		
+		theta = 0;
+		
 		weaponDrawn = false;
 		weaponButtonPressed = false;
 		fireButtonPressed = false;
@@ -32,7 +35,6 @@ public class Weapon {
 	
 	//Draw the reticle track and reticle to the screen
 	public void draw(SpriteBatch batch) {
-		if (!weaponDrawn) {return;}
 		track.draw(batch);
 		reticle.draw(batch);
 	}
@@ -78,8 +80,7 @@ public class Weapon {
 	}
 	
 	private void updateReticle(Input input) {
-		float tanTheta = (input.mouseY - trackCircle.y)/(input.mouseX - trackCircle.x);
-		float theta = (float) Math.atan(tanTheta);
+		theta = (float) Math.atan((input.mouseY - trackCircle.y)/(input.mouseX - trackCircle.x));
 		if (input.mouseX < trackCircle.x) {
 			theta = (float) (theta + Math.PI);
 		}
@@ -89,5 +90,13 @@ public class Weapon {
 		float reticleX = player.getX() + reticleXOffset;
 		float reticleY = player.getY() + reticleYOffset;
 		reticle.setBounds(reticleX, reticleY, reticleDiameter, reticleDiameter);
+	}
+	
+	public boolean weaponDrawn() {
+		return weaponDrawn;
+	}
+	
+	public float getTheta() {
+		return theta;
 	}
 }
