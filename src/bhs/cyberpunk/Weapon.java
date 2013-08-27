@@ -58,8 +58,11 @@ public class Weapon {
 		if (input.mouseLeft) {
 			fireButtonPressed = true;
 		} else if (fireButtonPressed) {
-			Audio.effects[Audio.GUNSHOT].play();
 			fireButtonPressed = false;
+			Audio.effects[Audio.GUNSHOT].play();
+			for (NPC npc : Screen.getNPCs()) {
+				npc.determineHit(trackCircle.x, trackCircle.y, theta);
+			}		
 		}
 		
 		//Update targeting graphic position

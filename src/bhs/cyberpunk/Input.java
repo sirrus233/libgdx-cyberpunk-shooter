@@ -12,6 +12,7 @@ public class Input implements InputProcessor {
 	public static final int WEAPON = 4;
 	public static final int SLOW = 5;
 	public static final int FAST = 6;
+	public static final int RESSURECT = 7;
 	
 	public boolean[] buttons = new boolean[64];
 
@@ -31,6 +32,10 @@ public class Input implements InputProcessor {
 		
 		if (key == Keys.O) {button = SLOW;}
 		if (key == Keys.P) {button = FAST;}
+		
+		if (key == Keys.Q) {button = RESSURECT;}
+		
+		if (key == Keys.ESCAPE) {Gdx.app.exit();} 
 		
 		if (button >= 0) {
 			this.buttons[button] = down;

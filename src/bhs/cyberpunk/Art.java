@@ -8,6 +8,8 @@ public class Art {
 	public static final int PLAYER_RIGHT = 2;
 	public static final int TARGET_TRACK = 3;
 	public static final int TARGET_RETICLE = 4;
+	public static final int NPC_RED = 5;
+	public static final int NPC_GREEN = 6;
 	
 	public static Texture[] textures = new Texture[64];
 	
@@ -17,5 +19,7 @@ public class Art {
 		textures[PLAYER_RIGHT] = new Texture("art\\player_right.png");
 		textures[TARGET_TRACK] = new Texture("art\\aiming_track.png");
 		textures[TARGET_RETICLE] = new Texture("art\\targeting_reticle.png");
+		textures[NPC_RED] = new Texture("art\\npc_red.png");
+		textures[NPC_GREEN] = new Texture("art\\npc_green.png");
 	}
 }
