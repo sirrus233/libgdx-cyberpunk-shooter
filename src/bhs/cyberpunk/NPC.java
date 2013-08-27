@@ -34,8 +34,18 @@ public class NPC {
 	}
 
 	public void determineHit(float pCenterX, float pCenterY, float theta) {
-		float minTheta = (float) Math.atan((sprite.getY() - pCenterY)/(sprite.getX() - pCenterX));
-		float maxTheta = (float) Math.atan((sprite.getY() + sprite.getHeight() - pCenterY)/(sprite.getX() - pCenterX));
+		//Get the center coordinates of the player, and the theta of the targeting reticle.
+		//Based on player's position in relation to the NPC, calculate a min/max theta necessary
+		//for a hit.
+
+		float theta1 = (float) Math.atan((sprite.getY() - pCenterY)/(sprite.getX() - pCenterX));
+		float theta2 = (float) Math.atan((sprite.getY() + sprite.getHeight() - pCenterY)/(sprite.getX() - pCenterX));
+		float theta3 = (float) Math.atan((sprite.getY() - pCenterY)/(sprite.getX() + sprite.getWidth() - pCenterX));
+		float theta4 = (float) Math.atan((sprite.getY() + sprite.getHeight() - pCenterY)/(sprite.getX() + sprite.getWidth() - pCenterX));
+		
+		float minTheta = Math.min(Math.min(theta1,theta2), Math.min(theta3,theta4));
+		float maxTheta = Math.max(Math.max(theta1,theta2), Math.max(theta3,theta4));
+		
 		if (theta > minTheta && theta < maxTheta) {
 			alive = false;
 		}
