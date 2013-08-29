@@ -1,5 +1,7 @@
 package bhs.cyberpunk;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
@@ -59,10 +61,16 @@ public class Weapon {
 			fireButtonPressed = true;
 		} else if (fireButtonPressed) {
 			fireButtonPressed = false;
+			
+			ArrayList<NPC> potentialHits = new ArrayList<NPC>(); 
+			for (NPC npc : WorldManager.getNPCs()) {
+				if (npc.inLineOfFire(trackCircle.x, trackCircle.y, theta)) {
+					potentialHits.add(npc);
+				}
+			}
+			if (!potentialHits.isEmpty()) {WorldManager.calcHit(potentialHits);}
+			
 			Audio.effects[Audio.GUNSHOT].play();
-			for (NPC npc : Screen.getNPCs()) {
-				npc.determineHit(trackCircle.x, trackCircle.y, theta);
-			}		
 		}
 		
 		//Update targeting graphic position
