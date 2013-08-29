@@ -87,6 +87,7 @@ public class Weapon {
 		if (input.mouseX < trackCircle.x) {
 			theta = (float) (theta + Math.PI);
 		}
+		if (theta < 0) {theta += 2*Math.PI;}
 		
 		float reticleXOffset = (float) (trackCircle.radius*Math.cos(theta) + reticleDiameter/4);
 		float reticleYOffset = (float) (trackCircle.radius*Math.sin(theta) + reticleDiameter/4);

@@ -33,7 +33,7 @@ public class NPC {
 		if (input.buttons[Input.RESSURECT]) {alive = true;}
 	}
 
-	public void determineHit(float pCenterX, float pCenterY, float theta) {
+	public void determineHit(float pCenterX, float pCenterY, float theta) {		
 		//Get the center coordinates of the player, and the theta of the targeting reticle.
 		//Based on player's position in relation to the NPC, calculate a min/max theta necessary
 		//for a hit. Min/max thetas are calculated by calculating what the necessary theta would
@@ -55,6 +55,8 @@ public class NPC {
 	private float calcTheta(float vertexX, float vertexY, float pCenterX, float pCenterY) {
 		float theta = (float) Math.atan((vertexY - pCenterY)/(vertexX - pCenterX));
 		if (pCenterX > vertexX) {theta = (float) (theta + Math.PI);}
+		if (theta < 0) {theta += 2*Math.PI;}
+		
 		return theta;
 	}
 }
