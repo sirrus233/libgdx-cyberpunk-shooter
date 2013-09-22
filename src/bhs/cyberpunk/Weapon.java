@@ -1,13 +1,11 @@
 package bhs.cyberpunk;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 
 public class Weapon {
-	private Sprite player;
+	private Player player;
 	private Sprite track;
 	private Sprite reticle;
 	private Circle trackCircle;
@@ -19,7 +17,7 @@ public class Weapon {
 	private boolean fireButtonPressed;
 	
 	
-	public Weapon(Sprite p) {
+	public Weapon(Player p) {
 		player = p;
 		track = new Sprite(Art.textures[Art.TARGET_TRACK]);
 		reticle = new Sprite(Art.textures[Art.TARGET_RETICLE]);
@@ -61,15 +59,7 @@ public class Weapon {
 			fireButtonPressed = true;
 		} else if (fireButtonPressed) {
 			fireButtonPressed = false;
-			
-			ArrayList<NPC> potentialHits = new ArrayList<NPC>(); 
-			for (NPC npc : WorldManager.getNPCs()) {
-				if (npc.inLineOfFire(trackCircle.x, trackCircle.y, theta)) {
-					potentialHits.add(npc);
-				}
-			}
-			if (!potentialHits.isEmpty()) {WorldManager.calcHit(potentialHits);}
-			
+			WorldManager.calcHit(player, theta);
 			Audio.effects[Audio.GUNSHOT].play();
 		}
 		
@@ -85,8 +75,8 @@ public class Weapon {
 		float trackY = player.getY()+trackYOffset;
 		track.setBounds(trackX, trackY, trackDiameter, trackDiameter);
 		
-		float circleCenterX = player.getX()+(player.getWidth()/2);
-		float circleCenterY = player.getY()+(player.getHeight()/2);
+		float circleCenterX = player.getCenter().x;
+		float circleCenterY = player.getCenter().y;
 		trackCircle.set(circleCenterX, circleCenterY, trackDiameter/2);
 	}
 	

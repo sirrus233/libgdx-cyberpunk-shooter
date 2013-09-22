@@ -8,7 +8,6 @@ public class Screen {
 	private final OrthographicCamera camera = new OrthographicCamera();
 	private final SpriteBatch batch = new SpriteBatch();
 	private final BitmapFont font = new BitmapFont();
-	private Player player = new Player();
 	
 	//Constructs a screen object, which consists of setting the camera
 	public Screen() {
@@ -19,7 +18,8 @@ public class Screen {
 		Audio.music[Audio.THEME].setLooping(true);
 		Audio.music[Audio.THEME].setVolume(0.1f);
 		
-		WorldManager.initEnemies();
+		WorldManager.initPlayers();
+		WorldManager.initNPCs();
 	}
 	
 	//Uses a SpriteBatch to draw to the screen
@@ -27,15 +27,15 @@ public class Screen {
 		batch.setProjectionMatrix(camera.combined);	
 		
 		batch.begin();
-		player.draw(batch);
+		for (Player player : WorldManager.getPlayers()) {player.draw(batch);}
 		for (NPC enemy : WorldManager.getNPCs()) {enemy.draw(batch);}
-		font.draw(batch, "Speed: " + player.getSpeed(), Main.WIDTH - 100, Main.HEIGHT - 20);
+		font.draw(batch, "Speed: " + WorldManager.getPlayers().get(0).getSpeed(), Main.WIDTH - 100, Main.HEIGHT - 20);
 		batch.end();
 	}
 	
 	//Ticks all the action on screen
-	public void tick(Input input) {			
+	public void tick(Input input) {
+		for (Player player : WorldManager.getPlayers()) {player.tick(input);}
 		for (NPC enemy : WorldManager.getNPCs()) {enemy.tick(input);}
-		player.tick(input);
 	}
 }
