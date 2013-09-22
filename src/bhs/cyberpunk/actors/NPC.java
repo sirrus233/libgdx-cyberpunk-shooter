@@ -1,6 +1,9 @@
-package bhs.cyberpunk;
+package bhs.cyberpunk.actors;
 
 import java.awt.geom.Point2D;
+
+import bhs.cyberpunk.Art;
+import bhs.cyberpunk.Input;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

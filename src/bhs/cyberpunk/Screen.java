@@ -1,5 +1,8 @@
 package bhs.cyberpunk;
 
+import bhs.cyberpunk.actors.NPC;
+import bhs.cyberpunk.actors.Player;
+
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

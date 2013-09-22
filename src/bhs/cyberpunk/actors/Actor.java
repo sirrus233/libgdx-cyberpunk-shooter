@@ -1,4 +1,4 @@
-package bhs.cyberpunk;
+package bhs.cyberpunk.actors;
 
 import java.awt.geom.Point2D;
 import com.badlogic.gdx.graphics.g2d.Sprite;

@@ -3,6 +3,9 @@ package bhs.cyberpunk;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import bhs.cyberpunk.actors.NPC;
+import bhs.cyberpunk.actors.Player;
+
 public class WorldManager {
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private static ArrayList<NPC> npcs = new ArrayList<NPC>();

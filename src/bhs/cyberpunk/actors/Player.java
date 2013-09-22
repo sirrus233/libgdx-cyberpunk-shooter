@@ -1,4 +1,9 @@
-package bhs.cyberpunk;
+package bhs.cyberpunk.actors;
+
+import bhs.cyberpunk.Art;
+import bhs.cyberpunk.Input;
+import bhs.cyberpunk.Main;
+import bhs.cyberpunk.Weapon;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
