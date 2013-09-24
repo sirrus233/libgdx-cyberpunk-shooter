@@ -51,19 +51,29 @@ public class NPC extends Actor {
 		float theta3 = calcTheta(vertices[2], playerCenter);
 		float theta4 = calcTheta(vertices[3], playerCenter);
 		
-		float minTheta = Math.min(Math.min(theta1,theta2), Math.min(theta3,theta4));
-		float maxTheta = Math.max(Math.max(theta1,theta2), Math.max(theta3,theta4));
+		float minThetaTest = Math.min(Math.min(theta1,theta2), Math.min(theta3,theta4));
+		float maxThetaTest = Math.max(Math.max(theta1,theta2), Math.max(theta3,theta4));
 		
-		System.out.println(theta1+","+theta2+","+theta3+","+theta4);
-		System.out.println(theta);
-		System.out.println();
+		float minTheta = minThetaTest;
+		float maxTheta = maxThetaTest;
+	
+		//Nasty tricky code to manage a "seam" at 0 and 2pi rads. If the min and max vertices
+		//lie on opposite sides of the seam, their angles are phase shifted so that the opposite
+		//side of the circle is used (just for the sake of calculation).
+		if (Math.abs(maxTheta-minTheta) > Math.PI) {
+			//It looks like min and max theta are reversed here, but this is by design. When the
+			//angles are phase shifted, the former max vertex becomes the min, and the former min
+			//becomes the max.
+			minTheta = (float) ((maxThetaTest + Math.PI) % (2*Math.PI));
+			maxTheta = (float) ((minThetaTest + Math.PI) % (2*Math.PI));
+			theta = (float) ((theta + Math.PI) % (2*Math.PI));
+		}
 		
 		return (theta > minTheta && theta < maxTheta);
 	}
 	
 	private float calcTheta(Point2D.Float vertex, Point2D.Float playerCenter) {
-		float theta = (float) Math.atan((vertex.y - playerCenter.y)/(vertex.x - playerCenter.x));
-		if (playerCenter.x > vertex.x) {theta = (float) (theta + Math.PI);}
+		float theta = (float) Math.atan2((vertex.y - playerCenter.y),(vertex.x - playerCenter.x));
 		if (theta < 0) {theta += 2*Math.PI;}
 		
 		return theta;
