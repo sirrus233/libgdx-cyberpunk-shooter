@@ -84,9 +84,6 @@ public class Weapon {
 	
 	private void updateReticle(Input input) {
 		theta = (float) Math.atan2((input.mouseY - trackCircle.y),(input.mouseX - trackCircle.x));
-		//if (input.mouseX < trackCircle.x) {
-		//	theta = (float) (theta + Math.PI);
-		//}
 		if (theta < 0) {theta += 2*Math.PI;}
 		
 		float reticleXOffset = (float) (trackCircle.radius*Math.cos(theta) + reticleDiameter/4);
