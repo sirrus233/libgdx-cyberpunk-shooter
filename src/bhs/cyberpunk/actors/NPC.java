@@ -37,12 +37,13 @@ public class NPC extends Actor {
 		
 		if (input.buttons[Input.RESSURECT]) {alive = true;}
 	}
-
+	
+	//Recieves the center coordinates of the player, and the theta of the targeting reticle.
+	//Based on player's position in relation to the NPC, calculates a min/max theta necessary
+	//for a hit. Min/max thetas are calculated by calculating what the necessary theta would
+	//be for each vertex of the NPC sprite. Returns whether or not the players theta lies between
+	//the valid min and max.
 	public boolean inLineOfFire(float playerCenterX, float playerCenterY, float theta) {		
-		//Get the center coordinates of the player, and the theta of the targeting reticle.
-		//Based on player's position in relation to the NPC, calculate a min/max theta necessary
-		//for a hit. Min/max thetas are calculated by calculating what the necessary theta would
-		//be for each vertex of the NPC sprite.
 		Point2D.Float vertices[] = getVertices();
 		Point2D.Float playerCenter = new Point2D.Float(playerCenterX, playerCenterY);
 		
