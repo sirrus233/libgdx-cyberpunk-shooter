@@ -46,29 +46,36 @@ public class NPC extends Actor {
 		Point2D.Float vertices[] = getVertices();
 		Point2D.Float playerCenter = new Point2D.Float(playerCenterX, playerCenterY);
 		
-		float theta1 = calcTheta(vertices[0], playerCenter);
-		float theta2 = calcTheta(vertices[1], playerCenter);
-		float theta3 = calcTheta(vertices[2], playerCenter);
-		float theta4 = calcTheta(vertices[3], playerCenter);
+		boolean inQuad1 = false;
+		boolean inQuad4 = false;
 		
-		float minThetaTest = Math.min(Math.min(theta1,theta2), Math.min(theta3,theta4));
-		float maxThetaTest = Math.max(Math.max(theta1,theta2), Math.max(theta3,theta4));
-		
-		float minTheta = minThetaTest;
-		float maxTheta = maxThetaTest;
-	
-		//Nasty tricky code to manage a "seam" at 0 and 2pi rads. If the min and max vertices
-		//lie on opposite sides of the seam, their angles are phase shifted so that the opposite
-		//side of the circle is used (just for the sake of calculation).
-		if (Math.abs(maxTheta-minTheta) > Math.PI) {
-			//It looks like min and max theta are reversed here, but this is by design. When the
-			//angles are phase shifted, the former max vertex becomes the min, and the former min
-			//becomes the max.
-			minTheta = (float) ((maxThetaTest + Math.PI) % (2*Math.PI));
-			maxTheta = (float) ((minThetaTest + Math.PI) % (2*Math.PI));
-			theta = (float) ((theta + Math.PI) % (2*Math.PI));
+		//Calculate the theta between the player and each vertex of the NPC.
+		//Detect if any of the NPC thetas is in quadrant 1 or 4 of the XY plane.
+		float[] npcThetas = new float[4];		
+		for (int i = 0; i < 4; i++) {
+			npcThetas[i] = calcTheta(vertices[i], playerCenter);
+			if (npcThetas[i] <= (Math.PI/2)) {inQuad1 = true;}
+			else if (npcThetas[i] >= (3*Math.PI/2)) {inQuad4 = true;}
 		}
+
+		float maxTheta = 0;
+		float minTheta = 0;
 		
+		//If there is an NPC theta in quadrants 1 AND 4, then simply choosing the largest and smallest
+		//values for theta will yield incorrect results, since the "smallest" theta will actually be
+		//quite big (near 2pi) and the "largest" theta will be small. To correct for this, convert all
+		//angles in the 4th quadrant to negative values, including the players aiming angle.
+		if (inQuad1 && inQuad4) {
+			for (int i = 0; i < 4; i++) {
+				if (npcThetas[i] >= (3*Math.PI/2)) {npcThetas[i] -= 2*Math.PI;}
+			}
+			if (theta >= (3*Math.PI/2)) {theta -= 2*Math.PI;}
+		} 
+		
+		//Calculate the max and min angles necessary for a hit, and return whether or not theta lies between them.
+		maxTheta = Math.max(Math.max(npcThetas[0],npcThetas[1]), Math.max(npcThetas[2],npcThetas[3]));
+		minTheta = Math.min(Math.min(npcThetas[0],npcThetas[1]), Math.min(npcThetas[2],npcThetas[3]));	
+
 		return (theta > minTheta && theta < maxTheta);
 	}
 	
