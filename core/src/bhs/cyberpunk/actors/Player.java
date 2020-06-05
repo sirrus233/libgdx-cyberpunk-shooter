@@ -2,7 +2,6 @@ package bhs.cyberpunk.actors;
 
 import bhs.cyberpunk.Art;
 import bhs.cyberpunk.Input;
-import bhs.cyberpunk.Main;
 import bhs.cyberpunk.Weapon;
 
 import com.badlogic.gdx.Gdx;
@@ -77,9 +76,9 @@ public class Player extends Actor {
 		
 		//Prevent player from escaping off edge of screen
 		if (sprite.getX() < 0) {sprite.setX(0);}
-		if (sprite.getX() > Main.WIDTH - sprite.getWidth()) {sprite.setX(Main.WIDTH - sprite.getWidth());}
+		if (sprite.getX() > Gdx.graphics.getWidth() - sprite.getWidth()) {sprite.setX(Gdx.graphics.getWidth() - sprite.getWidth());}
 		if (sprite.getY() < 0) {sprite.setY(0);;}
-		if (sprite.getY() > Main.HEIGHT - sprite.getHeight()) {sprite.setY(Main.HEIGHT - sprite.getHeight());}
+		if (sprite.getY() > Gdx.graphics.getHeight() - sprite.getHeight()) {sprite.setY(Gdx.graphics.getHeight() - sprite.getHeight());}
 		
 		//Copy final sprite position to directional sprites
 		spriteUp.setPosition(sprite.getX(), sprite.getY());

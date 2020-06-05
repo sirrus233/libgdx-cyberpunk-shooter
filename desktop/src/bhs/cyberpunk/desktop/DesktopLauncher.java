@@ -1,9 +1,10 @@
-package bhs.cyberpunk;
+package bhs.cyberpunk.desktop;
 
+import bhs.cyberpunk.Cyberpunk;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-public class Main {
+public class DesktopLauncher {
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
 	

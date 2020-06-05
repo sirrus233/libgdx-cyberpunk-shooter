@@ -81,12 +81,12 @@ public class Input implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		mouseX = screenX;
-		mouseY = Main.HEIGHT - screenY;  //To put y=0 along the bottom of the frame
+		mouseY = Gdx.graphics.getHeight() - screenY;  //To put y=0 along the bottom of the frame
 		
 		if (mouseX < 0) {Gdx.input.setCursorPosition(0, mouseY);}
-		if (mouseX > Main.WIDTH) {Gdx.input.setCursorPosition(Main.WIDTH, mouseY);}
+		if (mouseX > Gdx.graphics.getWidth()) {Gdx.input.setCursorPosition(Gdx.graphics.getWidth(), mouseY);}
 		if (mouseY < 0) {Gdx.input.setCursorPosition(mouseX, 0);}
-		if (mouseY > Main.HEIGHT) {Gdx.input.setCursorPosition(mouseX, Main.HEIGHT);}
+		if (mouseY > Gdx.graphics.getHeight()) {Gdx.input.setCursorPosition(mouseX, Gdx.graphics.getHeight());}
 		
 		return false;
 	}

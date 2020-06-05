@@ -3,6 +3,7 @@ package bhs.cyberpunk;
 import bhs.cyberpunk.actors.NPC;
 import bhs.cyberpunk.actors.Player;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,7 +16,7 @@ public class Screen {
 	//Constructs a screen object, which consists of setting the camera
 	public Screen() {
 		//Sets the camera to view the entire screen
-		camera.setToOrtho(false, Main.WIDTH, Main.HEIGHT);
+		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		Audio.music[Audio.THEME].play();
 		Audio.music[Audio.THEME].setLooping(true);
@@ -32,7 +33,7 @@ public class Screen {
 		batch.begin();
 		for (Player player : WorldManager.getPlayers()) {player.draw(batch);}
 		for (NPC enemy : WorldManager.getNPCs()) {enemy.draw(batch);}
-		font.draw(batch, "Speed: " + WorldManager.getPlayers().get(0).getSpeed(), Main.WIDTH - 100, Main.HEIGHT - 20);
+		font.draw(batch, "Speed: " + WorldManager.getPlayers().get(0).getSpeed(), Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 20);
 		batch.end();
 	}
 	

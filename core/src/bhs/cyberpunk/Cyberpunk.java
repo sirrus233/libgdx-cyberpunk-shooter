@@ -2,7 +2,7 @@ package bhs.cyberpunk;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 
 public class Cyberpunk implements ApplicationListener {
 	private Input input;
@@ -24,7 +24,7 @@ public class Cyberpunk implements ApplicationListener {
 	public void render() {
 		//Set the clear color of the background, and clear the screen
 		Gdx.gl.glClearColor(0.80f, 0.52f, 0.25f, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		screen.tick(input);
 		screen.draw();

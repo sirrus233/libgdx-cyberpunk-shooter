@@ -13,10 +13,10 @@ public class Audio {
 	public static Sound[] effects = new Sound[64];
 	
 	public static void loadMusic() {
-		music[THEME] = Gdx.audio.newMusic(Gdx.files.internal("sound\\music\\theme.mp3"));
+		music[THEME] = Gdx.audio.newMusic(Gdx.files.internal("sound/music/theme.mp3"));
 	}
 	
 	public static void loadEffects() {
-		effects[GUNSHOT] = Gdx.audio.newSound(Gdx.files.internal("sound\\effects\\gunshot.wav"));
+		effects[GUNSHOT] = Gdx.audio.newSound(Gdx.files.internal("sound/effects/gunshot.wav"));
 	}
 }
