@@ -10,7 +10,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = 'spaceybird'
+        appName = 'cyberpunk'
         gdxVersion = '1.9.10'
     }
 
